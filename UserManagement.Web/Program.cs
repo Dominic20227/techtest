@@ -13,7 +13,7 @@ builder.Services.AddDbContext<UserManagementDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("UserManagementConnectionString"));
 });
-// Add services to the container.
+
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
