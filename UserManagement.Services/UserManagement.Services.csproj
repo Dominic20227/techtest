@@ -3,6 +3,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UserManagement.Data\UserManagement.Data.csproj" />
+    <ProjectReference Include="..\UserManagement.Common\UserManagement.Common.csproj" />
+    <ProjectReference Include="..\UserManagement.Core\UserManagement.Core.csproj" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,38 @@
+﻿<div class="container mt-5">
+	<div class="row justify-content-center">
+		<div class="col-md-8 col-lg-6">
+			<div class="card shadow">
+				<div class="card-body p-4">
+					<h1 class="card-title text-center mb-4"><b>View User</b></h1>
+
+					<table class="table table-borderless">
+						<tr>
+							<td class="fw-bold text-muted py-3" style="width: 40%;">Id:</td>
+							<td class="py-3">@Model.Id</td>
+						</tr>
+						<tr>
+							<td class="fw-bold text-muted py-3">First Name:</td>
+							<td class="py-3">@Model.Forename</td>
+						</tr>
+						<tr>
+							<td class="fw-bold text-muted py-3">Last Name:</td>
+							<td class="py-3">@Model.Surname</td>
+						</tr>
+						<tr>
+							<td class="fw-bold text-muted py-3">Email Address:</td>
+							<td class="py-3">@Model.Email</td>
+						</tr>
+						<tr>
+							<td class="fw-bold text-muted py-3">Date Of Birth:</td>
+							<td class="py-3">@Model.DateOfBirth</td>
+						</tr>
+						<tr>
+							<td class="fw-bold text-muted py-3">Active User:</td>
+							<td class="py-3">@(Model.IsActive == true ? "Yes" : "No")</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

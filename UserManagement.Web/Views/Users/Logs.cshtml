@@ -1,0 +1,44 @@
+﻿@model UserManagement.Common.UserModels.UserLogsModel  
+
+<div class="container mt-4">
+    <h1>@(Model.FullName)'s Activity Logs</h1>
+    <p class="text-muted">Total Logs: @Model.TotalLogs</p>
+
+    @if (Model.Logs != null && Model.Logs.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Log Type</th>
+                        <th>Message</th>
+                        <th>Date of Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var log in Model.Logs)
+                    {
+                        <tr>
+                            <td>
+                                <span class="badge bg-info">@log.LogType</span>
+                            </td>
+                            <td>
+                                @log.LogMessage
+                            </td>
+                            <td>
+                                @log.DateAndTime.ToString("yyyy-MM-dd HH:mm:ss")
+                            </td>
+                        </tr>
+                    }	
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <h4>No Activity Logs Found</h4>
+            <p>This user has no recorded activity yet.</p>
+        </div>
+    }
+</div>

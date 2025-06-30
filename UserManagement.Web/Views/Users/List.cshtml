@@ -1,65 +1,82 @@
-﻿@model UserManagement.Web.Models.Users.UserListViewModel
+﻿@using System.Text
 
-<h2>User List</h2>
+@model List<UserManagement.Common.UserModels.UserModel> 
+<h2>User List</h2>  
 
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
+	<div class="table-responsive">  
+    <table class="table table-striped">  
+        <thead>  
             <tr>
                 <th>Id</th>
-                <th>Forename</th>
-                <th>Surname</th>
-                <th>Email</th>
+                <th>Forename</th>  
+                <th>Surname</th>  
                 <th>Account Active</th>
-                <th style="width: 1px;"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Items)
-            {
+                <th>Actions</th>
+				<th>Logs</th>
+            </tr>  
+        </thead>  
+        <tbody>  
+            @foreach (var item in Model)  
+            {  
                 <tr>
-                    <td>
-                        @item.Id
+					<td>
+						@item.Id
+					</td>
+                    <td>  
+                        @item.Forename  
+                    </td>  
+                    <td>  
+                        @item.Surname  
                     </td>
-                    <td>
-                        @item.Forename
-                    </td>
-                    <td>
-                        @item.Surname
-                    </td>
-                    <td>
-                        @item.Email
-                    </td>
-                    <td>
-                        @(item.IsActive ? "Yes" : "No")
-                    </td>
-                    <td>
-                        <div class="dropdown">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="btnToggleActions">
-                                Actions
-                            </button>
+					<td>
+						@if (item.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Inactive</span>
+                        }
+					</td>
+					<td>  
+                        <div class="dropdown d-inline-block">  
+                            <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">  
+                                Actions  
+                            </button>  
                             <ul class="dropdown-menu" aria-labelledby="btnToggleActions">
-                                <li><a class="dropdown-item" href="#">View</a></li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
-                                <li><a class="dropdown-item" href="#">Delete</a></li>
-                            </ul>
-                        </div>
+								<li><a class="dropdown-item" asp-controller="Users" asp-action="View" asp-route-id="@item.Id">View</a></li>
+								<li><a class="dropdown-item" asp-controller="Users" asp-action="Update" asp-route-id="@item.Id">Edit</a></li>  
+                                <li>
+									<form asp-controller="Users" asp-action="Delete" asp-route-id="@item.Id" method="post" style="display: inline"> 
+										<input type="hidden" name="id" value="@item.Id" />
+										<button type="submit" class="dropdown-item text-danger" onclick="return confirm(`Are you sure you want to delete @item.Forename @item.Surname`)">Delete</button>
+									</form>
+								</li>
+							</ul>  
+                        </div>  
                     </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+					<td>
+						<a class="btn btn-outline-secondary btn-sm" asp-controller="Users" asp-action="Logs" asp-route-id="@item.Id">View Logs</a>
+					</td>
+                </tr>  
+            }  
+        </tbody>  
+    </table>  
+</div>  
+
+<div>  
+    <div class="btn-group" role="group">  
+        <a asp-controller="Users" asp-action="List" class="btn btn-default">Show All</a>  
+        <a asp-controller="Users" asp-action="List" asp-route-filter="active" class="btn btn-default">Active Only</a>  
+        <a asp-controller="Users" asp-action="List" asp-route-filter="notactive" class="btn btn-default">Non Active</a>  
+    </div>  
+
+    <a asp-controller="Users" asp-action="Add" class="btn btn-primary float-end">  
+        Add User  
+    </a>  
 </div>
-
-<div>
-    <div class="btn-group" role="group">
-        <a asp-controller="Users" asp-action="List" class="btn btn-default">Show All</a>
-        <a href="#" class="btn btn-default">Active Only</a>
-        <a href="#" class="btn btn-default">Non Active</a>
-    </div>
-
-    <a href="#" class="btn btn-primary float-end">
-        Add User
-    </a>
-</div>
-
+<style>
+	th {
+		text-align: left;
+	}
+</style>
