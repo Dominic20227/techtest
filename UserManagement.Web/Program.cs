@@ -27,6 +27,16 @@ builder.Services
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<UserManagementDbContext>();
+    if(dbContext.Database.IsRelational())
+    {
+        dbContext.Database.Migrate();
+    }
+   
+}
+
 app.UseMarkdown();
 
 app.UseHsts();
