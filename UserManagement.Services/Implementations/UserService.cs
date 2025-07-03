@@ -64,7 +64,7 @@ public class UserService : BaseService<IUserRepository, User>, IUserService
         }));
     }
 
-    public async Task<UserModel?> GetByIdAsync(long id)
+    public async Task<UserModel?> GetUserByIdAsync(long id)
     {
         try
         {

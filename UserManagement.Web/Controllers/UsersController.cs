@@ -48,7 +48,7 @@ public class UsersController : Controller
     [Route("view")]
     public async Task<ViewResult> View(long id)
     {
-        var user = await _userService.GetByIdAsync<UserModel>(id);
+        var user = await _userService.GetUserByIdAsync(id);
         return View(user);
     }
 

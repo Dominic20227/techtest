@@ -11,7 +11,7 @@ namespace UserManagement.Services.Domain.Interfaces;
 public interface IUserService : IBaseService<IUserRepository, User>
 {
     public Task<List<UserModel>> GetByActiveStatus(bool isActive);
-    public Task<UserModel?> GetByIdAsync(long id);
+    public Task<UserModel?> GetUserByIdAsync(long id);
     public Task AddAsync(AddUserModel model);
     public Task UpdateAsync(UpdateUserModel model);
     public Task<UserLogsModel?> GetUserAndLogsAsync(long id);
